@@ -5,23 +5,23 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Compile the Java file
-                sh 'javac HelloWorld.java'
+                // Compile the Java file on Windows
+                bat 'javac HelloWorld.java'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Testing...'
-                // Run the Java program and capture its output
-                sh 'java HelloWorld'
+                // Run the compiled Java program on Windows
+                bat 'java HelloWorld'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                // Simulating deployment (customize as needed)
+                // Placeholder for deployment logic
                 echo 'Deployment successful!'
             }
         }

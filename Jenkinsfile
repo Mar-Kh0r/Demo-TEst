@@ -5,7 +5,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Compile the Java file on Windows
                 bat 'javac HelloWorld.java'
             }
         }
@@ -13,7 +12,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
-                // Run the compiled Java program on Windows
                 bat 'java HelloWorld'
             }
         }
@@ -21,9 +19,27 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                // Placeholder for deployment logic
                 echo 'Deployment successful!'
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Post-build actions are running...'
+        }
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed. Check logs for details.'
+        }
+        unstable {
+            echo 'Build marked as unstable.'
+        }
+        cleanup {
+            echo 'Cleaning up workspace...'
+            cleanWs()
         }
     }
 }
